@@ -5,7 +5,7 @@ json
   "containerDefinitions": [
     {
       "name": "testing-app-container",
-      "image": "<ECR_REPOSITORY_URL>",
+      "image": "337909741523.dkr.ecr.us-east-1.amazonaws.com/testing-app",
       "portMappings": [
         {
           "containerPort": 8080,
