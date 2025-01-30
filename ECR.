@@ -1,0 +1,30 @@
+yml
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+    commands:
+      - echo Installing Docker...
+      - amazon-linux-extras install docker -y
+      - service docker start
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REPOSITORY}
+
+  pre_build:
+    commands:
+      - echo Downloading source code...
+      - git clone https://github.com/rishit30/hello-spring.git
+      - cd hello-spring
+      - echo Building Docker image...
+      - docker build -t ${ECR_REPOSITORY}:latest .
+
+  build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push ${ECR_REPOSITORY}:latest
+
+artifacts:
+  files:
+    - '**/*'
