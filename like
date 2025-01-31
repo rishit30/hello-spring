@@ -1,0 +1,11 @@
+# Use OpenJDK 17 as the base image
+    FROM openjdk:17
+
+    # Set the working directory in the container
+    WORKDIR /app
+
+    # Copy the application's .jar file into the container
+    COPY target/my-application.jar /app
+
+    # Set the startup command to run your binary
+    CMD ["java", "-jar", "/app/my-application.jar"]
