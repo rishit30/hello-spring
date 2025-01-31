@@ -1,6 +1,5 @@
-Dockerfile
+docker
 FROM openjdk:17
-COPY . /app
-WORKDIR /app
-RUN ./mvnw clean package
-ENTRYPOINT ["java","-jar","target/helloworld-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8080
+ADD ./target/myapp.jar myapp.jar
+ENTRYPOINT ["java","-jar","/myapp.jar"]
