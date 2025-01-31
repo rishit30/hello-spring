@@ -1,5 +1,5 @@
-docker
 FROM openjdk:17
-EXPOSE 8080
-ADD ./target/myapp.jar myapp.jar
-ENTRYPOINT ["java","-jar","/myapp.jar"]
+    WORKDIR /app
+    COPY . ./
+    RUN ./mvnw package
+    CMD ["java", "-jar", "target/hello-spring-0.0.1-SNAPSHOT.jar"]
